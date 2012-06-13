@@ -1,0 +1,49 @@
+<?php $this->headScript()->appendFile('/resources/js/ads.js') ?>
+<?php $this->headScript()->appendFile('/resources/js/tinymce/jquery.tinymce.js') ?>
+
+<div class="page-header"><h1>Quảng Cáo</h1></div>
+
+<table width="100%">
+    <tr>
+        <td valign="top">
+            <h3>Danh Sách Quảng Cáo</h3>
+            <?php if (!$this->paginator->count()): ?>
+            <div class="alert">Không có dữ liệu !</div>
+            <?php else: ?>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th width="50">#</th>
+                    <th>Nội Dung</th>
+                    <th style="text-align: center" width="120">Ngày Tạo</th>
+                    <th style="text-align: center" width="100">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php $offset = ($this->paginator->getCurrentPageNumber() - 1) * $this->paginator->getItemCountPerPage() ?>
+                    <?php foreach ($this->paginator as $index => $item): ?>
+                    <tr>
+                        <td><?php echo $offset + $index + 1 ?></td>
+                        <td><?php echo $item->content ?></td>
+                        <td style="text-align: center"><?php echo $item->created_time ?></td>
+                        <td style="text-align: center">
+                            <a class="btn btn-small btn-danger" href="/ads/delete/id/<?php echo $item->id ?>" onclick="return confirm('Bạn có chắc chắn muốn xoá?')">Xoá</a>
+                        </td>
+                    </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+            <div style="text-align: right"><?php echo $this->paginator ?></div>
+            <?php endif ?>
+        </td>
+        <td align="right" valign="top" width="410">
+            <h3>Tạo Mới Quảng Cáo</h3>
+            <form action="/ads/add" method="POST">
+            <textarea class="tinymce" name="content"></textarea>
+            <br />
+
+            <button id="save-ads-btn" class="btn btn-primary" onclick="$(this).attr('disabled', 'disabled')">Lưu</button>
+            </form>
+        </td>
+    </tr>
+</table>

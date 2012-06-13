@@ -1,0 +1,40 @@
+<?php $this->headScript()->appendFile('/resources/js/news.js') ?>
+
+<div class="page-header"><h1>Tin Tức</h1></div>
+
+<button id="fetch-newsletter-bt" class="btn btn-primary">Lấy Tin</button>
+<span id="fetch-loading" class="hide"><img src="/resources/images/loading.gif" alt="Loading"></span>
+
+<br />
+<br />
+
+<h3>Danh Sách Tin Tức</h3>
+
+<?php if (!$this->paginator->count()): ?>
+    <div class="alert">Không có dữ liệu !</div>
+<?php else: ?>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th width="50">#</th>
+                <th>Hình</th>
+                <th>Tên</th>
+                <th>Nội Dung Tóm Tắt</th>
+                <th style="text-align: center" width="120">Ngày Tạo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $offset = ($this->paginator->getCurrentPageNumber() - 1) * $this->paginator->getItemCountPerPage() ?>
+            <?php foreach ($this->paginator as $index => $item): ?>
+            <tr>
+                <td><?php echo $offset + $index + 1 ?></td>
+                <td><?php if ($item->thumbnail): ?><img height="50" src="<?php echo $item->thumbnail ?>" /><?php endif ?></td>
+                <td><a target="_blank" href="<?php echo $item->original_url ?>"><?php echo $item->name ?></a></td>
+                <td><?php echo $item->summary ?></td>
+                <td style="text-align: center"><?php echo $item->created_time ?></td>
+            </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+    <div style="text-align: right"><?php echo $this->paginator ?></div>
+<?php endif ?>

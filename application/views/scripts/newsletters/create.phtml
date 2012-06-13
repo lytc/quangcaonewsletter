@@ -1,0 +1,98 @@
+<?php $this->headScript()->appendFile('/resources/js/newsletter-create.js') ?>
+
+<script type="text/template" id="news-template">
+    <ul class="news-list">
+        <% _.each(items, function(item) { %>
+        <li class="item<% if (!item.thumbnail) { %> no-thumbnail<% } %>">
+            <h4 class="name"><span class="btn btn-mini btn-primary btn-add-to-newsletter" data-type="news" data-id="<%= item.id %>">Thêm</span>&nbsp;<a
+                href="<%= item.original_url%>"><%= item.name %></a></h4>
+
+            <div>
+                <p class="summary"><%= item.summary %></p>
+                <% if (item.thumbnail) { %>
+                <img class="thumbnail" src="<%= item.thumbnail%>" alt="<%= item.name %>">
+                <% } %>
+                <div class="clear"></div>
+            </div>
+        </li>
+        <% }) %>
+    </ul>
+</script>
+
+<script type="text/template" id="ads-template">
+    <ul class="news-list">
+        <% _.each(items, function(item) { %>
+        <li class="item" data-id="<%= item.id %>">
+            <span class="btn btn-mini btn-primary btn-add-to-newsletter" data-type="ads" data-id="<%= item.id %>" style="margin-bottom: 5px;">Thêm</span>
+            <%= item.content %>
+        </li>
+        <% }) %>
+    </ul>
+</script>
+
+<script type="text/template" id="newsletter-news-item-template">
+    <li style="list-style-type:none; margin-bottom: 10px; display:block;" data-type="news" data-id="<%= item.id %>">
+        <div style="float: left; margin-left: 10px;">
+        <a href="<%= item.original_url %>" style="color:#000; font-weight:bold; font-size:14px; text-decoration: none; margin:0;"><%= item.name %></a>
+        <p>
+            <% if (item.thumbnail) { %>
+            <img style="float:right; margin: 0 0 2px 2px; width: 80px;" src="<%= item.thumbnail %>" alt="<%= item.name %>">
+            <% } %>
+            <%= item.summary %>
+            <div style="clear:both;"></div>
+            </p>
+        <div style="clear:both;"></div>
+        </div>
+    </li>
+</script>
+
+<script type="text/template" id="newsletter-ads-item-template">
+    <li style="list-style-type:none; margin-bottom: 10px; display:block" data-type="ads" data-id="<%= item.id %>">
+        <div style="border: 1px solid #F3B204;padding: 5px 10px; text-align: left; background:#fae6ab; float:left; width:355px;">
+            <div style="font-family: Arial;font-size: 12px;margin: 10px 15px 10px 10px;">
+                <%= item.content %>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </li>
+</script>
+
+<div class="page-header"><h1>Newsletter <small>Tạo Mới</small></h1></div>
+
+<button id="save-newsletter" class="btn btn-primary">Xuất Bản</button>
+<span id="save-newsletter-processing" class="hide"><img src="/resources/images/loading.gif" alt="Loading"></span>
+<br />
+<br />
+<div id="editor">
+    <iframe id="iframe-editor" src="/templates/get/name/phapluattp1" frameborder=0></iframe>
+</div>
+<div id="right-panel">
+    <div class="block">
+        <h3 class="cursor-pointer f-left" data-toggle="collapse" data-target="#news-list-container">Tin Tức</h3>
+        <button id="fetch-newsletter-bt" class="btn btn-danger f-right">Lấy Tin</button>
+        <span id="fetch-loading" class="hide f-right"><img src="/resources/images/loading.gif" alt="Loading"></span>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="clearfix"></div>
+    <br/>
+    <div id="news-list-container" class="collapse in">
+        <div id="news-list-pagination-control"></div>
+        <br/>
+        <div id="news-list"></div>
+    </div>
+
+    <div class="block">
+        <h3 class="cursor-pointer f-left" data-toggle="collapse" data-target="#ads-list-container">Quảng Cáo</h3>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+    <br/>
+
+    <div id="ads-list-container" class="collapse in">
+        <div id="ads-list-pagination-control"></div>
+        <br/>
+        <div id="ads-list"></div>
+    </div>
+</div>
+<div class="clearfix"></div>

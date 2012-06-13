@@ -1,0 +1,95 @@
+.clear {
+    clear: both;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+#container {
+    width: 1094px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#header {
+}
+
+#center {
+}
+
+#footer {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #E5E5E5;
+}
+
+#editor {
+    width: 670px;
+    float: left;
+    border: 1px solid #ccc;
+}
+
+#editor iframe {
+    width: 100%;
+}
+
+#right-panel {
+    width: 410px;
+    float: left;
+    border: 1px solid #ccc;
+    padding: 10px 5px;
+}
+
+#right-panel .block {
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.news-list {
+    list-style: none;
+    margin: 0;
+}
+
+.news-list .item {
+    margin-bottom: 10px;
+}
+
+.news-list .item .name {
+
+}
+
+.news-list .item .summary {
+    float: left;
+    width: 320px;
+}
+
+.news-list .item .thumbnail {
+    width: 80px;
+    float: right;
+}
+
+.news-list .item.no-thumbnail .summary {
+    width: 100%;
+}
+
+.btn-add {
+    position: absolute;
+}
+
+#ads-table {
+    width: 500px;
+    border-top: 0;
+}
+
+#newsletter-table {
+    border-top: 0;
+}

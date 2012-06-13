@@ -1,0 +1,34 @@
+<div class="page-header"><h1>Newsletter</h1></div>
+
+<a href="/newsletters/create" class="btn btn-primary">Tạo Mới</a>
+<br />
+<br />
+
+<h3>Danh Sách Newsletter</h3>
+
+<?php if (!$this->paginator->count()): ?>
+    <div class="alert">Không có dữ liệu !</div>
+<?php else: ?>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th width="50">#</th>
+                <th>Tên</th>
+                <th>Url</th>
+                <th style="text-align: center" width="120">Ngày Tạo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $offset = ($this->paginator->getCurrentPageNumber() - 1) * $this->paginator->getItemCountPerPage() ?>
+            <?php foreach ($this->paginator as $index => $item): ?>
+            <tr>
+                <td><?php echo $offset + $index + 1 ?></td>
+                <td><?php echo $item->name ?></td>
+                <td><a target="_blank" href="<?echo $this->serverUrl() ?>/newsletters/view/id/<?php echo $item->id ?>"><?echo $this->serverUrl() ?>/newsletters/view/id/<?php echo $item->id ?></a></td>
+                <td style="text-align: center"><?php echo $item->created_time ?></td>
+            </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+    <div style="text-align: right"><?php echo $this->paginator ?></div>
+<?php endif ?>
