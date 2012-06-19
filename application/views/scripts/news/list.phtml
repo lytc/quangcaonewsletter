@@ -17,7 +17,7 @@
         <thead>
             <tr>
                 <th width="50">#</th>
-                <th>Hình</th>
+                <th width="100">Hình</th>
                 <th>Tên</th>
                 <th>Nội Dung Tóm Tắt</th>
                 <th style="text-align: center" width="120">Ngày Tạo</th>
@@ -29,7 +29,7 @@
             <tr>
                 <td><?php echo $offset + $index + 1 ?></td>
                 <td><?php if ($item->thumbnail): ?><img height="50" src="<?php echo $item->thumbnail ?>" /><?php endif ?></td>
-                <td><a target="_blank" href="<?php echo $item->original_url ?>"><?php echo $item->name ?></a></td>
+                <td><a target="_blank" href="<?php echo $item->url ?>"><?php echo $item->name ?></a></td>
                 <td><?php echo $item->summary ?></td>
                 <td style="text-align: center"><?php echo $item->created_time ?></td>
             </tr>

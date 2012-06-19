@@ -11,7 +11,7 @@ class CrawlerController extends App_Controller
         if ($this->getRequest()->isPost()) {
             $items = $this->getRequest()->getParam('items');
             foreach ($items as &$item) {
-                $item['content'] = $crawler->getPageContent($item['original_url']);
+                $item['content'] = $crawler->getPageContent($item['url']);
             }
             $result = array('adapter' => $adapter, 'items' => $items);
         } else {
@@ -37,11 +37,11 @@ class CrawlerController extends App_Controller
         $items = $this->getRequest()->getParam('items');
 
         foreach ($items as $item) {
-            if (!preg_match('/^https?:\/\//', $item['original_url'])) {
-                $item['original_url'] = $baseUrl . $item['original_url'];
+            if (!preg_match('/^https?:\/\//', $item['url'])) {
+                $item['url'] = $baseUrl . $item['url'];
             }
 
-            if ($newsTable->fetchRow(array('original_url = ?' => $item['original_url']))) {
+            if ($newsTable->fetchRow(array('url = ?' => $item['url']))) {
                 continue;
             }
 

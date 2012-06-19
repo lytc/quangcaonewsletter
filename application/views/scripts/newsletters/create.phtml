@@ -5,7 +5,7 @@
         <% _.each(items, function(item) { %>
         <li class="item<% if (!item.thumbnail) { %> no-thumbnail<% } %>">
             <h4 class="name"><span class="btn btn-mini btn-primary btn-add-to-newsletter" data-type="news" data-id="<%= item.id %>">Thêm</span>&nbsp;<a
-                href="<%= item.original_url%>"><%= item.name %></a></h4>
+                href="<%= item.url%>"><%= item.name %></a></h4>
 
             <div>
                 <p class="summary"><%= item.summary %></p>
@@ -33,7 +33,7 @@
 <script type="text/template" id="newsletter-news-item-template">
     <li style="list-style-type:none; margin-bottom: 10px; display:block;" data-type="news" data-id="<%= item.id %>">
         <div style="float: left; margin-left: 10px;">
-        <a href="<%= item.original_url %>" style="color:#000; font-weight:bold; font-size:14px; text-decoration: none; margin:0;"><%= item.name %></a>
+        <a href="<%= item.url %>" style="color:#000; font-weight:bold; font-size:14px; text-decoration: none; margin:0;"><%= item.name %></a>
         <p>
             <% if (item.thumbnail) { %>
             <img style="float:right; margin: 0 0 2px 2px; width: 80px;" src="<%= item.thumbnail %>" alt="<%= item.name %>">

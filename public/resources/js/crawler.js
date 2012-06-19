@@ -43,7 +43,7 @@ Crawler.adapter = {
                 itemData = {};
 
                 var a = item.find('div[class="mt1 mr1"] > a');
-                itemData.original_url = a.attr('href');
+                itemData.url = a.attr('href');
                 itemData.name = a.html();
 
                 itemData.thumbnail = item.find('img').attr('src');
